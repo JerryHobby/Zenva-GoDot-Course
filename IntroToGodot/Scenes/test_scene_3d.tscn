@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://2p3umsj8fui3"]
+
+[ext_resource type="PackedScene" uid="uid://bkombhtm1nh6w" path="res://Player/player.tscn" id="1_try5w"]
+[ext_resource type="PackedScene" uid="uid://c8qy4nins78i1" path="res://Coin/coin.tscn" id="2_il0nc"]
+
+[node name="TestScene3D" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_try5w")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.733603, 4.9897)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(-0.219846, 0, 0.975535, 0, 1, 0, -0.975535, 0, -0.219846, 0.793452, 0, 2.31969)
+light_energy = 14.899
+omni_range = 11.8685
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Coin" parent="Node2D" instance=ExtResource("2_il0nc")]
+position = Vector2(0, -104)
+
+[node name="Coin2" parent="Node2D" instance=ExtResource("2_il0nc")]
+position = Vector2(-113, -104)
+
+[node name="Coin3" parent="Node2D" instance=ExtResource("2_il0nc")]
+position = Vector2(0, -186)
+
+[node name="Coin4" parent="Node2D" instance=ExtResource("2_il0nc")]
+position = Vector2(102, -104)
+
+[node name="Coin5" parent="Node2D" instance=ExtResource("2_il0nc")]
+position = Vector2(-167, -255)
+
+[node name="Coin6" parent="Node2D" instance=ExtResource("2_il0nc")]
+position = Vector2(152, -257)

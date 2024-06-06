@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcxjx862mrpnc"]
+
+[ext_resource type="Texture2D" uid="uid://di5ssby5753rx" path="res://Loops/Star.png" id="1_5757v"]
+[ext_resource type="Script" path="res://Loops/star.gd" id="2_2r0cl"]
+
+[sub_resource type="Animation" id="Animation_bs61q"]
+resource_name = "star"
+length = 2.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_apfej"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c6v5o"]
+_data = {
+"RESET": SubResource("Animation_apfej"),
+"star": SubResource("Animation_bs61q")
+}
+
+[node name="Star" type="Sprite2D"]
+texture = ExtResource("1_5757v")
+script = ExtResource("2_2r0cl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c6v5o")
+}
+autoplay = "star"

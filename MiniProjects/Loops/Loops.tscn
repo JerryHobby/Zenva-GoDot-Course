@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhmd40sycjd7h"]
+
+[ext_resource type="Script" path="res://Loops/Loops.gd" id="1_81wbx"]
+
+[sub_resource type="Theme" id="Theme_8apql"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_81wbx")
+star_count = 500
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -640.0
+offset_top = -389.0
+offset_right = 615.0
+offset_bottom = 352.0
+theme = SubResource("Theme_8apql")
+
+[node name="Camera2D" type="Camera2D" parent="."]

@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtt8s7iqtiouw"]
+
+[ext_resource type="Script" path="res://Coins/coin.gd" id="1_vy45k"]
+[ext_resource type="Texture2D" uid="uid://ydbe1tyhvygu" path="res://Assets/Sprites/Objects/tile_0151.png" id="1_x8sfb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pwtnv"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_msvpq"]
+resource_name = "blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.25, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sumxq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_57nsb"]
+_data = {
+"RESET": SubResource("Animation_sumxq"),
+"blink": SubResource("Animation_msvpq")
+}
+
+[node name="Coin" type="Area2D"]
+script = ExtResource("1_vy45k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_x8sfb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pwtnv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_57nsb")
+}
+autoplay = "blink"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

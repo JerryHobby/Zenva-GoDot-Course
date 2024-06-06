@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://06siofxqjrue"]
+
+[ext_resource type="Script" path="res://Baloon Popper/balloon.gd" id="1_esmcq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwcq0"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 1)
+metallic = 0.49
+metallic_specular = 0.65
+roughness = 0.58
+rim_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_bt8xb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sf7db"]
+
+[node name="Balloon" type="Area3D"]
+script = ExtResource("1_esmcq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_uwcq0")
+mesh = SubResource("SphereMesh_bt8xb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_sf7db")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=3 uid="uid://vik4cdrtfdn2"]
+
+[ext_resource type="PackedScene" uid="uid://bfhttp6weunl7" path="res://Physics/player.tscn" id="1_qwtre"]
+[ext_resource type="PackedScene" uid="uid://bwcwb8bsir1nd" path="res://Physics/crate.tscn" id="2_ifvut"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_qwtre")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Crates" type="Node2D" parent="."]
+
+[node name="Crate" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(21, -22)
+
+[node name="Crate2" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(43, -42)
+
+[node name="Crate3" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(76, -37)
+
+[node name="Crate4" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(69, -61)
+
+[node name="Crate5" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(30, 11)
+
+[node name="Crate6" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(66, -7)
+
+[node name="Crate7" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(20, -56)
+
+[node name="Crate8" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-11, -36)
+
+[node name="Crate9" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-26, -59)
+
+[node name="Crate10" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-41, -24)
+
+[node name="Crate11" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-28, 14)
+
+[node name="Crate12" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(84, 17)
+
+[node name="Crate13" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(54, 30)
+
+[node name="Crate14" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(107, -18)
+
+[node name="Crate15" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(112, 21)
+
+[node name="Crate16" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(102, -48)
+
+[node name="Crate17" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(93, 47)
+
+[node name="Crate18" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(22, 49)
+
+[node name="Crate19" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(122, 56)
+
+[node name="Crate20" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(58, 61)
+
+[node name="Crate21" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-5, 33)
+
+[node name="Crate22" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-9, 67)
+
+[node name="Crate23" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-34, 49)
+
+[node name="Crate24" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-73, 35)
+
+[node name="Crate25" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-72, 0)
+
+[node name="Crate26" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-71, -35)
+
+[node name="Crate27" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-97, 64)
+
+[node name="Crate28" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-101, 14)
+
+[node name="Crate29" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-126, 40)
+
+[node name="Crate30" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-119, -15)
+
+[node name="Crate31" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-88, -61)
+
+[node name="Crate32" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-121, -60)
+
+[node name="Crate33" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-54, -73)
+
+[node name="Crate34" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(-58, 67)
+
+[node name="Crate35" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(42, -71)
+
+[node name="Crate36" parent="Crates" instance=ExtResource("2_ifvut")]
+position = Vector2(121, -66)

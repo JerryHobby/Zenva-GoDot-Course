@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1rx16juyocsi"]
+
+[ext_resource type="Script" path="res://Coin Collector Game/Player.gd" id="1_olxol"]
+[ext_resource type="Texture2D" uid="uid://c0rstluknyurd" path="res://Sprites/Player.png" id="1_p52iw"]
+[ext_resource type="PackedScene" path="res://Coin Collector Game/Coin.tscn" id="3_hh85r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74pq4"]
+size = Vector2(66, 66)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_olxol")
+
+[node name="Sprite" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_p52iw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_74pq4")
+
+[node name="Coin" parent="." instance=ExtResource("3_hh85r")]
+position = Vector2(-136, -74)
+
+[node name="Coin2" parent="." instance=ExtResource("3_hh85r")]
+position = Vector2(108, -105)
+
+[node name="Coin3" parent="." instance=ExtResource("3_hh85r")]
+position = Vector2(291, -27)
+
+[node name="Coin4" parent="." instance=ExtResource("3_hh85r")]
+position = Vector2(276, 108)
+
+[node name="Coin5" parent="." instance=ExtResource("3_hh85r")]
+position = Vector2(130, 172)
+
+[node name="Coin6" parent="." instance=ExtResource("3_hh85r")]
+position = Vector2(-101, 141)
+
+[node name="Coin7" parent="." instance=ExtResource("3_hh85r")]
+position = Vector2(-279, 122)
+
+[node name="Coin8" parent="." instance=ExtResource("3_hh85r")]
+position = Vector2(-299, -28)
+
+[node name="Coin9" parent="." instance=ExtResource("3_hh85r")]
+position = Vector2(-199, 50)
+
+[node name="Coin10" parent="." instance=ExtResource("3_hh85r")]
+position = Vector2(-79, -136)
+
+[node name="Coin11" parent="." instance=ExtResource("3_hh85r")]
+position = Vector2(157, 56)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)

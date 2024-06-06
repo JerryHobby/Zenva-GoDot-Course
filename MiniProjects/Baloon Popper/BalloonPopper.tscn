@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmifgckckkhk7"]
+
+[ext_resource type="Script" path="res://Baloon Popper/BalloonManager.gd" id="1_laqgd"]
+[ext_resource type="PackedScene" uid="uid://06siofxqjrue" path="res://Baloon Popper/balloon.tscn" id="1_qg48w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5l7pq"]
+albedo_color = Color(8.66656e-08, 0, 0.423247, 1)
+roughness = 0.8
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x4oc2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eg1gm"]
+font_size = 40
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_laqgd")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.45958)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.959484, 0.208428, 0.189599, -0.212344, 0.977195, 0.000345821, -0.185203, -0.0405921, 0.981862, -9.26517, 3.69741, 8.24885)
+light_energy = 3.02
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 67.1087, -74.1379, 0, 74.1379, 67.1087, 0, -2.49357, -1.76614)
+material_override = SubResource("StandardMaterial3D_5l7pq")
+mesh = SubResource("PlaneMesh_x4oc2")
+
+[node name="Balloons" type="Node3D" parent="."]
+
+[node name="Balloon" parent="Balloons" instance=ExtResource("1_qg48w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.623277, 0, -0.952016)
+size_increase = 0.5
+score_to_give = 2
+
+[node name="Balloon2" parent="Balloons" instance=ExtResource("1_qg48w")]
+clicks_to_pop = 3
+color = Color(0.296461, 0.496742, 0.995436, 0.501961)
+
+[node name="Balloon3" parent="Balloons" instance=ExtResource("1_qg48w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.942714, -0.529631)
+clicks_to_pop = 3
+color = Color(0.296461, 0.496742, 0.995436, 0.501961)
+
+[node name="Balloon4" parent="Balloons" instance=ExtResource("1_qg48w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.913826, 0, -0.46024)
+clicks_to_pop = 3
+color = Color(0.296461, 0.496742, 0.995436, 0.501961)
+
+[node name="Balloon5" parent="Balloons" instance=ExtResource("1_qg48w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.521011, -0.644935)
+clicks_to_pop = 3
+color = Color(0.296461, 0.496742, 0.995436, 0.501961)
+
+[node name="Balloon6" parent="Balloons" instance=ExtResource("1_qg48w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.588042, 1.35099, 0)
+clicks_to_pop = 3
+color = Color(0.296461, 0.496742, 0.995436, 0.501961)
+
+[node name="Balloon7" parent="Balloons" instance=ExtResource("1_qg48w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.791799, 0.918186, -0.779659)
+clicks_to_pop = 3
+color = Color(0.296461, 0.496742, 0.995436, 0.501961)
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 18.0
+offset_top = 16.0
+offset_right = 389.0
+offset_bottom = 76.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_eg1gm")

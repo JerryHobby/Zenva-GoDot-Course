@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1l4arx76b5i7"]
+
+[ext_resource type="Texture2D" uid="uid://dpfw6ck4mow1p" path="res://Assets/Sprites/Characters/character_0024.png" id="1_4v577"]
+[ext_resource type="Script" path="res://Enemies/bat.gd" id="1_51o3j"]
+[ext_resource type="Texture2D" uid="uid://cmuj56kflday4" path="res://Assets/Sprites/Characters/character_0025.png" id="2_3o7mr"]
+[ext_resource type="Texture2D" uid="uid://b7v77tpl04fsy" path="res://Assets/Sprites/Characters/character_0026.png" id="3_njcip"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lbxle"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4v577")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3o7mr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_njcip")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsm4p"]
+size = Vector2(18, 13)
+
+[node name="Bat" type="Area2D" groups=["Enemy"]]
+position = Vector2(170, -30)
+script = ExtResource("1_51o3j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lbxle")
+autoplay = "default"
+frame = 2
+frame_progress = 0.429843
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_dsm4p")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
