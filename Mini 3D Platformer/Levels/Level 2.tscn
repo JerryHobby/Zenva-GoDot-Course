@@ -1,0 +1,118 @@
+[gd_scene load_steps=10 format=3 uid="uid://rclqqx4hcr1o"]
+
+[ext_resource type="PackedScene" uid="uid://ckn586cx85jgw" path="res://Player/player.tscn" id="1_ay0g6"]
+[ext_resource type="PackedScene" uid="uid://cj7oh2p08xjve" path="res://Platform/large_platform.tscn" id="2_78bt3"]
+[ext_resource type="PackedScene" uid="uid://h57wawvf4h1y" path="res://Platform/large_long_platform.tscn" id="3_1v7b1"]
+[ext_resource type="PackedScene" uid="uid://cydvgluqe4k8e" path="res://Enemies/spike_block.tscn" id="4_032r7"]
+[ext_resource type="PackedScene" uid="uid://du0v1d2pvog1c" path="res://Enemies/spikes.tscn" id="5_rmwng"]
+[ext_resource type="PackedScene" uid="uid://b3dxa4lse5fmc" path="res://Coins/coin.tscn" id="6_ahrdx"]
+[ext_resource type="PackedScene" uid="uid://dfo3gk27fkg84" path="res://EndFlag/end_flag.tscn" id="7_l6m52"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gj26w"]
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Environment" id="Environment_5g1jm"]
+background_mode = 1
+background_color = Color(0.554576, 0.792051, 0.610881, 1)
+
+[node name="Main" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ay0g6")]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(-1, 3.27489e-08, -8.10571e-08, -1.94994e-08, 0.820273, 0.571972, 8.52204e-08, 0.571972, -0.820273, -0.00573315, 2.64591, -1.54168)
+current = true
+fov = 84.3
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.496853, -0.796495, -0.344575, -7.61063e-17, -0.397052, 0.917796, -0.867835, -0.45601, -0.197276, 0, 8.16697, -4.21029)
+
+[node name="Platforms" type="Node3D" parent="."]
+
+[node name="Large Platform" parent="Platforms" instance=ExtResource("2_78bt3")]
+transform = Transform3D(2.99, 0, 0, 0, 2.99, 0, 0, 0, 2.99, 0, -2.97628, 0)
+
+[node name="Large Platform2" parent="Platforms" instance=ExtResource("2_78bt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0288014, -1, 4.96491)
+
+[node name="Large Platform3" parent="Platforms" instance=ExtResource("3_1v7b1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.5509)
+
+[node name="Large Platform4" parent="Platforms" instance=ExtResource("3_1v7b1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14732, 18.7131)
+
+[node name="SpikeBlocks" type="Node3D" parent="."]
+
+[node name="SpikeBlock" parent="SpikeBlocks" instance=ExtResource("4_032r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.67388, 6.77647)
+move_dir = Vector3(2.08165e-12, 3, 2.08165e-12)
+
+[node name="SpikeBlock2" parent="SpikeBlocks" instance=ExtResource("4_032r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.674417, 14.6987)
+move_dir = Vector3(2.08165e-12, 3, 2.08165e-12)
+
+[node name="Spikes" type="Node3D" parent="."]
+
+[node name="Spikes" parent="Spikes" instance=ExtResource("5_rmwng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00664, 10.3192)
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="hud"]
+offset_left = 841.0
+offset_top = 593.0
+offset_right = 1141.0
+offset_bottom = 648.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_gj26w")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Coins" type="Node3D" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource("6_ahrdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.146175, 1.11874)
+award_points = 50
+
+[node name="Coin2" parent="Coins" instance=ExtResource("6_ahrdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30221, 0.146175, 1.11874)
+coin_color = 1
+award_points = 25
+
+[node name="Coin3" parent="Coins" instance=ExtResource("6_ahrdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43263, 0.146175, 1.11874)
+coin_color = -1
+
+[node name="Coin4" parent="Coins" instance=ExtResource("6_ahrdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0433877, 1.08655, 8.70634)
+coin_color = -1
+
+[node name="Coin5" parent="Coins" instance=ExtResource("6_ahrdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0433877, 1.08655, 9.23631)
+coin_color = -1
+
+[node name="Coin6" parent="Coins" instance=ExtResource("6_ahrdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0433877, 1.08655, 8.15438)
+coin_color = -1
+
+[node name="Coin7" parent="Coins" instance=ExtResource("6_ahrdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0433877, 1.08655, 11.9686)
+coin_color = -1
+
+[node name="Coin8" parent="Coins" instance=ExtResource("6_ahrdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0433877, 1.08655, 12.4985)
+coin_color = -1
+
+[node name="Coin9" parent="Coins" instance=ExtResource("6_ahrdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0433877, 1.08655, 11.4166)
+coin_color = -1
+
+[node name="EndFlag" parent="." instance=ExtResource("7_l6m52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0308563, 2.1792)
+next_level = "res://Levels/Level 1.tscn"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5g1jm")

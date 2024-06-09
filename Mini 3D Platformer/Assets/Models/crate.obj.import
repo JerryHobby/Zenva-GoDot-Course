@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dn4skvmidm7ln"
+path="res://.godot/imported/crate.obj-dc3f0530d08f314a7718ce4de8fc6d72.mesh"
+
+[deps]
+
+files=["res://.godot/imported/crate.obj-dc3f0530d08f314a7718ce4de8fc6d72.mesh"]
+
+source_file="res://Assets/Models/crate.obj"
+dest_files=["res://.godot/imported/crate.obj-dc3f0530d08f314a7718ce4de8fc6d72.mesh", "res://.godot/imported/crate.obj-dc3f0530d08f314a7718ce4de8fc6d72.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
