@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://spvrndywfttc"]
+
+[ext_resource type="PackedScene" uid="uid://bhpndtj8j0rso" path="res://Scenes/character.tscn" id="1_2j1dq"]
+[ext_resource type="Script" path="res://Singletons/TurnManager.gd" id="1_ftmpt"]
+[ext_resource type="Resource" uid="uid://bvw1ovued3s5u" path="res://Assets/Combat Actions/Heal.tres" id="3_657cv"]
+[ext_resource type="Texture2D" uid="uid://c2wg0k1nxgqhw" path="res://Assets/Sprites/Reptile.png" id="3_sxte7"]
+[ext_resource type="Resource" uid="uid://cl430cpu5x0t6" path="res://Assets/Combat Actions/Slash.tres" id="4_8a5pg"]
+[ext_resource type="Texture2D" uid="uid://b72mglhhw1vg4" path="res://Assets/Sprites/Boar.png" id="4_v0md8"]
+[ext_resource type="Resource" uid="uid://oy0tfbtidh20" path="res://Assets/Combat Actions/Stomp.tres" id="5_dtwui"]
+[ext_resource type="Resource" uid="uid://13tpwtg2l80y" path="res://Assets/Combat Actions/Siphon.tres" id="5_h0thb"]
+[ext_resource type="Script" path="res://Scenes/PlayerCombatActionsUI.gd" id="8_00oqx"]
+[ext_resource type="Script" path="res://Scenes/CombatActionButton.gd" id="8_4rgks"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ud63e"]
+bg_color = Color(0.19729, 0.403381, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t8wkf"]
+bg_color = Color(0.404534, 0.582699, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_otyib"]
+bg_color = Color(0.652555, 0.763504, 1, 1)
+
+[node name="BattleScene" type="Node2D" node_paths=PackedStringArray("player_char", "enemy_char")]
+position = Vector2(246, 273)
+script = ExtResource("1_ftmpt")
+player_char = NodePath("Player")
+enemy_char = NodePath("Enemy")
+
+[node name="Player" parent="." node_paths=PackedStringArray("opponent") instance=ExtResource("1_2j1dq")]
+position = Vector2(-225, -67)
+combat_actions = [ExtResource("3_657cv"), ExtResource("4_8a5pg"), ExtResource("5_h0thb"), ExtResource("5_dtwui")]
+opponent = NodePath("../Enemy")
+sprite_texture = ExtResource("3_sxte7")
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("opponent") instance=ExtResource("1_2j1dq")]
+position = Vector2(239, -67)
+is_player = false
+combat_actions = [ExtResource("3_657cv"), ExtResource("5_dtwui"), ExtResource("4_8a5pg"), ExtResource("5_h0thb")]
+opponent = NodePath("../Player")
+sprite_texture = ExtResource("4_v0md8")
+flipped = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="PlayerCombatActionsUI" type="VBoxContainer" parent="."]
+visible = false
+offset_left = -303.0
+offset_top = 55.0
+offset_right = -143.0
+offset_bottom = 162.0
+theme_override_constants/separation = 8
+script = ExtResource("8_00oqx")
+buttons = [NodePath("CombatButton"), NodePath("CombatButton2"), NodePath("CombatButton3"), NodePath("CombatButton4")]
+
+[node name="CombatButton" type="Button" parent="PlayerCombatActionsUI"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ud63e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_t8wkf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_otyib")
+text = "Action(5 dmg)"
+script = ExtResource("8_4rgks")
+
+[node name="CombatButton2" type="Button" parent="PlayerCombatActionsUI"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ud63e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_t8wkf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_otyib")
+text = "Action(5 dmg)"
+script = ExtResource("8_4rgks")
+
+[node name="CombatButton3" type="Button" parent="PlayerCombatActionsUI"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ud63e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_t8wkf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_otyib")
+text = "Action(5 dmg)"
+script = ExtResource("8_4rgks")
+
+[node name="CombatButton4" type="Button" parent="PlayerCombatActionsUI"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ud63e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_t8wkf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_otyib")
+text = "Action(5 dmg)"
+script = ExtResource("8_4rgks")
+
+[connection signal="character_begin_turn" from="." to="PlayerCombatActionsUI" method="_on_battle_scene_character_begin_turn"]
+[connection signal="character_end_turn" from="." to="PlayerCombatActionsUI" method="_on_battle_scene_character_end_turn"]
+[connection signal="pressed" from="PlayerCombatActionsUI/CombatButton" to="PlayerCombatActionsUI/CombatButton" method="_on_pressed"]
+[connection signal="pressed" from="PlayerCombatActionsUI/CombatButton2" to="PlayerCombatActionsUI/CombatButton2" method="_on_pressed"]
+[connection signal="pressed" from="PlayerCombatActionsUI/CombatButton3" to="PlayerCombatActionsUI/CombatButton3" method="_on_pressed"]
+[connection signal="pressed" from="PlayerCombatActionsUI/CombatButton4" to="PlayerCombatActionsUI/CombatButton4" method="_on_pressed"]

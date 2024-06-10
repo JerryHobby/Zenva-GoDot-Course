@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CombatAction" load_steps=2 format=3 uid="uid://13tpwtg2l80y"]
+
+[ext_resource type="Script" path="res://Singletons/CombatActions.gd" id="1_kri3p"]
+
+[resource]
+script = ExtResource("1_kri3p")
+display_name = "Siphon (Steal 3HP)"
+damage = 3
+heal = 3

@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhpndtj8j0rso"]
+
+[ext_resource type="Script" path="res://Scenes/Character.gd" id="1_kpjmp"]
+[ext_resource type="Texture2D" uid="uid://d5aakdfo7xfr" path="res://Assets/Sprites/Dragon.png" id="2_n4ftt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdil0"]
+bg_color = Color(0.308769, 0.308769, 0.308769, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l76dx"]
+bg_color = Color(0.843137, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dapm7"]
+font_size = 20
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_dgpwu"]
+resource_name = "damage"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.08165e-12, 2.08165e-12), Vector2(2.08165e-12, -50), Vector2(0, 0), Vector2(2.08165e-12, -50), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6nwev"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iha15"]
+resource_name = "die"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(2.08165e-12, 2.08165e-12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y7qlt"]
+_data = {
+"RESET": SubResource("Animation_6nwev"),
+"damage": SubResource("Animation_dgpwu"),
+"die": SubResource("Animation_iha15")
+}
+
+[node name="Character" type="Node2D"]
+script = ExtResource("1_kpjmp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_n4ftt")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -80.0
+offset_top = 79.0
+offset_right = 80.0
+offset_bottom = 106.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vdil0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l76dx")
+value = 50.0
+show_percentage = false
+
+[node name="HealthText" type="Label" parent="HealthBar"]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 27.0
+text = "25 / 25"
+label_settings = SubResource("LabelSettings_dapm7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y7qlt")
+}
