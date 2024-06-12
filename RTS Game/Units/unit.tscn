@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvasupvp0ut75"]
+
+[ext_resource type="Script" path="res://Units/unit.gd" id="1_0ev5a"]
+[ext_resource type="Texture2D" uid="uid://88eonlxbmclm" path="res://Assets/Sprites/tile_0096.png" id="1_xf585"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cry3p"]
+radius = 7.01783
+
+[sub_resource type="LabelSettings" id="LabelSettings_dno2m"]
+font_size = 10
+
+[node name="Unit" type="CharacterBody2D"]
+script = ExtResource("1_0ev5a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_xf585")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 2)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_cry3p")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 3.0
+path_max_distance = 500.0
+
+[node name="DebugLabel" type="Label" parent="."]
+visible = false
+offset_left = -42.0
+offset_top = 16.0
+offset_right = 41.0
+offset_bottom = 32.0
+text = "Position: xxx, xxx"
+label_settings = SubResource("LabelSettings_dno2m")
