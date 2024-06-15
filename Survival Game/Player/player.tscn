@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqqfw3npu55y5"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_83s86"]
+[ext_resource type="Script" path="res://Player/Need.gd" id="2_gpcec"]
+[ext_resource type="PackedScene" uid="uid://oougasxss0x8" path="res://Scenes/need_bar.tscn" id="2_jbucq"]
+[ext_resource type="Script" path="res://Player/PlayerNeeds.gd" id="2_k5xrm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ydwx4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dpx2q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88pkl"]
+albedo_color = Color(0.592448, 9.13416e-07, 2.22611e-07, 1)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_83s86")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)
+shape = SubResource("CapsuleShape3D_ydwx4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)
+mesh = SubResource("CapsuleMesh_dpx2q")
+surface_material_override/0 = SubResource("StandardMaterial3D_88pkl")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.6, 2.08165e-12)
+current = true
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.6, 2.08165e-12)
+
+[node name="PlayerNeeds" type="Node2D" parent="."]
+position = Vector2(21, 20)
+script = ExtResource("2_k5xrm")
+no_hunger_health_decay = 0.5
+no_thirst_health_decay = 0.2
+
+[node name="Health" type="Node" parent="PlayerNeeds" node_paths=PackedStringArray("ui_bar")]
+script = ExtResource("2_gpcec")
+max_value = 100.0
+start_value = 80.0
+regen_rate = 1.0
+ui_bar = NodePath("NeedBar")
+
+[node name="NeedBar" parent="PlayerNeeds/Health" instance=ExtResource("2_jbucq")]
+offset_left = 15.0
+offset_top = 983.0
+offset_right = 315.0
+offset_bottom = 1028.0
+need_name = "Health"
+
+[node name="Hunger" type="Node" parent="PlayerNeeds" node_paths=PackedStringArray("ui_bar")]
+script = ExtResource("2_gpcec")
+max_value = 100.0
+start_value = 70.0
+decay_rate = 1.0
+ui_bar = NodePath("NeedBar")
+
+[node name="NeedBar" parent="PlayerNeeds/Hunger" instance=ExtResource("2_jbucq")]
+offset_left = 15.0
+offset_top = 1035.0
+offset_right = 315.0
+offset_bottom = 1080.0
+need_name = "Hunger"
+color = Color(0.693903, 0.436646, 0, 1)
+
+[node name="Thirst" type="Node" parent="PlayerNeeds" node_paths=PackedStringArray("ui_bar")]
+script = ExtResource("2_gpcec")
+max_value = 100.0
+start_value = 80.0
+decay_rate = 0.5
+ui_bar = NodePath("NeedBar")
+
+[node name="NeedBar" parent="PlayerNeeds/Thirst" instance=ExtResource("2_jbucq")]
+offset_left = 15.0
+offset_top = 1087.0
+offset_right = 315.0
+offset_bottom = 1132.0
+need_name = "Thirst"
+color = Color(0, 0.554142, 0.904894, 1)
+
+[node name="Sleep" type="Node" parent="PlayerNeeds" node_paths=PackedStringArray("ui_bar")]
+script = ExtResource("2_gpcec")
+max_value = 100.0
+regen_rate = 3.0
+ui_bar = NodePath("NeedBar")
+
+[node name="NeedBar" parent="PlayerNeeds/Sleep" instance=ExtResource("2_jbucq")]
+offset_left = 15.0
+offset_top = 1139.0
+offset_right = 315.0
+offset_bottom = 1184.0
+need_name = "Sleep"
+color = Color(0.637843, 0.354814, 0.968627, 1)

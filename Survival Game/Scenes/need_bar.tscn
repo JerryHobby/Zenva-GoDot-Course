@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://oougasxss0x8"]
+
+[ext_resource type="Script" path="res://Player/NeedBar.gd" id="1_a88ey"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hm1db"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ljbg"]
+bg_color = Color(5.46804e-06, 0.667931, 0.14661, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m1shc"]
+line_spacing = 2.08165e-12
+font_size = 28
+outline_size = 5
+outline_color = Color(0.228511, 0.228511, 0.228511, 0.65098)
+
+[node name="NeedBar" type="ProgressBar"]
+offset_right = 300.0
+offset_bottom = 45.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hm1db")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6ljbg")
+value = 50.0
+show_percentage = false
+script = ExtResource("1_a88ey")
+
+[node name="NeedLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 299.0
+offset_bottom = 45.0
+text = "Health: 100 / 100"
+label_settings = SubResource("LabelSettings_m1shc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
