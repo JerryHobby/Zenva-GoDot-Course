@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca1v7kf0nst02"]
+
+[ext_resource type="Script" path="res://Scenes/Taxi.gd" id="1_e78s7"]
+[ext_resource type="PackedScene" uid="uid://dwt2me8jiwhde" path="res://Assets/City/Models/taxi.glb" id="2_8pfph"]
+[ext_resource type="AudioStream" uid="uid://cv0q3i16m4gyq" path="res://Assets/Audio/Sound Effects/Car_Engine_Loop.ogg" id="3_pf5it"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lfxdn"]
+size = Vector3(1.80804, 1.46289, 4.50735)
+
+[node name="Taxi" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.452, -23.1251)
+script = ExtResource("1_e78s7")
+
+[node name="taxi2" parent="." instance=ExtResource("2_8pfph")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00200105, -0.101622, -0.758033)
+shape = SubResource("BoxShape3D_lfxdn")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_pf5it")
+volume_db = -19.81
+unit_size = 30.0
+autoplay = true
+max_distance = 20.0
+bus = &"SFX"
+doppler_tracking = 1

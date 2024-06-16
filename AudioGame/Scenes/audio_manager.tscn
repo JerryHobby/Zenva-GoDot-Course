@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3y4uhfdwiy4i"]
+
+[ext_resource type="Script" path="res://Scenes/audio_manager.gd" id="1_e5nxy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkgno"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 0.654902)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2dyki"]
+font_size = 25
+
+[node name="AudioWindow" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -167.0
+offset_right = 258.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qkgno")
+script = ExtResource("1_e5nxy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -90.5
+offset_right = 100.0
+offset_bottom = 90.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 36
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Volume Controls"
+label_settings = SubResource("LabelSettings_2dyki")
+
+[node name="Master Volume" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/Master Volume"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Master"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/Master Volume"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+max_value = 1.0
+step = 2.08165e-12
+value = 1.0
+
+[node name="Music Volume" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/Music Volume"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Music"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/Music Volume"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+max_value = 1.0
+step = 2.08165e-12
+value = 1.0
+
+[node name="SFX Volume" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/SFX Volume"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sound Effects
+"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/SFX Volume"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+max_value = 1.0
+step = 2.08165e-12
+value = 1.0
+
+[connection signal="value_changed" from="VBoxContainer/Master Volume/HSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Music Volume/HSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SFX Volume/HSlider" to="." method="_on_sfx_slider_value_changed"]

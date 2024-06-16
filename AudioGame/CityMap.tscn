@@ -1,0 +1,69 @@
+[gd_scene load_steps=13 format=3 uid="uid://crvwglv0qgjy0"]
+
+[ext_resource type="PackedScene" uid="uid://bq4lbuf3phs6p" path="res://Assets/City/Models/ground.glb" id="1_nacng"]
+[ext_resource type="PackedScene" uid="uid://dg560ywk6p4lv" path="res://Assets/City/Models/bank.glb" id="2_3nrjy"]
+[ext_resource type="PackedScene" uid="uid://bj403ydfcovj7" path="res://Assets/City/Models/store.glb" id="3_8lacy"]
+[ext_resource type="PackedScene" uid="uid://dnpoasnpl7swp" path="res://Assets/City/Models/restaurant.glb" id="4_ck1fj"]
+[ext_resource type="PackedScene" uid="uid://dx2a5gqnq6byg" path="res://Assets/City/Models/pharmacy.glb" id="5_6e70l"]
+[ext_resource type="PackedScene" uid="uid://dagb0ndu82erx" path="res://Assets/City/Models/bar.glb" id="6_tbgy7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_amd0x"]
+size = Vector3(78.4482, 1, 93.9922)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c1q3b"]
+size = Vector3(8.86316, 8.70728, 8.73856)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1tna0"]
+size = Vector3(9.20259, 12.0767, 9.10098)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_at1la"]
+size = Vector3(9.00757, 8.81348, 20.9541)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_duf14"]
+size = Vector3(8.98026, 9.24902, 8.8252)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xh2yd"]
+size = Vector3(8.94775, 9.13196, 9.03101)
+
+[node name="CityMap" type="StaticBody3D"]
+
+[node name="ground2" parent="." instance=ExtResource("1_nacng")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0318146, -0.4, -15.8933)
+shape = SubResource("BoxShape3D_amd0x")
+
+[node name="bank2" parent="." instance=ExtResource("2_3nrjy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.55621, 0.1, -8.78519)
+
+[node name="store2" parent="." instance=ExtResource("3_8lacy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.43171, 0.1, -20.8166)
+
+[node name="restaurant2" parent="." instance=ExtResource("4_ck1fj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2468, 0.1, -9.16195)
+
+[node name="pharmacy2" parent="." instance=ExtResource("5_6e70l")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.65743, 0.1, 8.5929)
+
+[node name="bar2" parent="." instance=ExtResource("6_tbgy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.21561, 0.1, 8.72187)
+
+[node name="store CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.43867, 4.12732, -20.8671)
+shape = SubResource("BoxShape3D_c1q3b")
+
+[node name="bank CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.52382, 5.71937, -8.82656)
+shape = SubResource("BoxShape3D_1tna0")
+
+[node name="restaurant CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2372, 4.38037, -15.1059)
+shape = SubResource("BoxShape3D_at1la")
+
+[node name="pharmacy CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.63173, 4.12451, 8.60639)
+shape = SubResource("BoxShape3D_duf14")
+
+[node name="bar CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.2266, 4.16598, 8.70368)
+shape = SubResource("BoxShape3D_xh2yd")

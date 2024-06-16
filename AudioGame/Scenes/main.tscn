@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://nwoaiuowudct"]
+
+[ext_resource type="PackedScene" uid="uid://cf1pwgl0y0mi6" path="res://Player Controller/Player.tscn" id="1_e56p4"]
+[ext_resource type="PackedScene" uid="uid://crvwglv0qgjy0" path="res://CityMap.tscn" id="2_msoek"]
+[ext_resource type="AudioStream" uid="uid://c23ls77ap1eb8" path="res://Assets/Audio/Sound Effects/StreetAmbience (2).ogg" id="3_q5hbk"]
+[ext_resource type="PackedScene" uid="uid://ca1v7kf0nst02" path="res://Scenes/taxi.tscn" id="5_stgmb"]
+[ext_resource type="PackedScene" uid="uid://d3y4uhfdwiy4i" path="res://Scenes/audio_manager.tscn" id="6_nnhbr"]
+[ext_resource type="AudioStream" uid="uid://bxel47geti0y8" path="res://Assets/Audio/Music/Alexander Ehlers - Twists.mp3" id="7_3tupv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uigw4"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_x1vax"]
+sky_material = SubResource("ProceduralSkyMaterial_uigw4")
+
+[sub_resource type="Environment" id="Environment_7dfb3"]
+background_mode = 2
+sky = SubResource("Sky_x1vax")
+tonemap_mode = 2
+ssao_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.00335116, 0.184259, 0.148952, 1)
+fog_density = 0.2367
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_peyt1"]
+size = Vector3(8.82965, 6.50854, 4.7641)
+
+[node name="Main" type="Node3D"]
+
+[node name="World" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_7dfb3")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.96762, 0)
+stream = ExtResource("3_q5hbk")
+attenuation_model = 1
+volume_db = -70.096
+unit_size = 200.0
+max_db = -23.0
+autoplay = true
+panning_strength = 0.31
+bus = &"SFX"
+
+[node name="Music" type="AudioStreamPlayer" parent="World"]
+stream = ExtResource("7_3tupv")
+volume_db = -36.541
+autoplay = true
+bus = &"Music"
+
+[node name="CityMap" parent="World" instance=ExtResource("2_msoek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161437, -0.471126, 0.102971)
+
+[node name="ReverbZone" type="Area3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4611, 1.88915, -14.7747)
+audio_bus_override = true
+audio_bus_name = &"SFX Reverb"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/ReverbZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.12596, 0.44812, 0.0348816)
+shape = SubResource("BoxShape3D_peyt1")
+
+[node name="Player" parent="." instance=ExtResource("1_e56p4")]
+transform = Transform3D(-0.0125311, 0, 0.999922, 0, 1, 0, -0.999922, 0, -0.0125311, -5.62169, 0, -14.8092)
+
+[node name="Taxi" parent="." instance=ExtResource("5_stgmb")]
+
+[node name="AudioManager" parent="." instance=ExtResource("6_nnhbr")]
