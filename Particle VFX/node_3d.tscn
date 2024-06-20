@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4tinjawee1j5"]
+
+[ext_resource type="PackedScene" uid="uid://ctpas7ceuyx1i" path="res://rain_2d.tscn" id="1_dtfdq"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Rain2D" parent="." instance=ExtResource("1_dtfdq")]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctpas7ceuyx1i"]
+
+[sub_resource type="Gradient" id="Gradient_sr3cv"]
+offsets = PackedFloat32Array(0, 0.987698)
+colors = PackedColorArray(0.603059, 0.748477, 0.876171, 1, 0.603922, 0.74902, 0.87451, 0.592157)
+
+[node name="Rain2D" type="CPUParticles2D"]
+position = Vector2(389, -340)
+amount = 500
+lifetime = 3.0
+speed_scale = 1.31
+emission_shape = 3
+emission_rect_extents = Vector2(800, 1)
+gravity = Vector2(100, 400)
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+color = Color(0.613488, 0.679753, 0.8038, 1)
+color_ramp = SubResource("Gradient_sr3cv")

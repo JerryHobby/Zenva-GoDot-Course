@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdtpm8s6ji4bq"]
+
+[ext_resource type="Texture2D" uid="uid://dbsoq66nqy5tw" path="res://Assets/Circle.png" id="1_p2ox1"]
+
+[sub_resource type="Curve" id="Curve_7lxob"]
+_data = [Vector2(0, 0.994757), 0.0, 0.0, 0, 0, Vector2(1, 0.514117), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_e5kx0"]
+offsets = PackedFloat32Array(0, 0.202109, 0.493849, 0.789104, 1)
+colors = PackedColorArray(1, 0.85098, 0.545098, 0.341176, 1, 0.52549, 0, 0.780392, 0.976471, 0.415686, 0, 0.8, 0.358253, 0.101536, 0, 1, 0.342714, 0.0367358, 0, 0.329412)
+
+[sub_resource type="PrismMesh" id="PrismMesh_mrhqd"]
+size = Vector3(150, 600, 1)
+
+[sub_resource type="Gradient" id="Gradient_biqt7"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.361139, 0.214297, 4.39798e-08, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q6l74"]
+gradient = SubResource("Gradient_biqt7")
+
+[node name="Fire2D" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 3000
+lifetime = 0.5
+speed_scale = 0.61
+randomness = 1.0
+lifetime_randomness = 1.0
+texture = ExtResource("1_p2ox1")
+emission_shape = 1
+emission_sphere_radius = 70.0
+gravity = Vector2(2.08165e-12, -3000)
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+radial_accel_min = -100.0
+radial_accel_max = 100.0
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_7lxob")
+color_ramp = SubResource("Gradient_e5kx0")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(-57, 332)
+rotation = 0.171844
+scale = Vector2(0.853333, 1)
+mesh = SubResource("PrismMesh_mrhqd")
+texture = SubResource("GradientTexture1D_q6l74")

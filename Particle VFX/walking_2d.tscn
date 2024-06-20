@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://tohbpsj1cpw3"]
+
+[ext_resource type="Script" path="res://walking_2d.gd" id="1_2ka5e"]
+[ext_resource type="Texture2D" uid="uid://dbsoq66nqy5tw" path="res://Assets/Circle.png" id="2_kbwg3"]
+[ext_resource type="Script" path="res://Foot.gd" id="2_ucvjx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sexa5"]
+
+[sub_resource type="Gradient" id="Gradient_tu383"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.646228, 0.528828, 0.348049, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aguy3"]
+gradient = SubResource("Gradient_tu383")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xirgs"]
+size = Vector2(998, 40.125)
+
+[sub_resource type="Curve" id="Curve_ook20"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99362, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vbbkf"]
+colors = PackedColorArray(1, 1, 0.137255, 1, 1, 1, 1, 0)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cdhkm"]
+radius = 25.0
+height = 131.999
+
+[node name="Walking2D" type="Node2D"]
+script = ExtResource("1_2ka5e")
+
+[node name="Floor" type="RigidBody2D" parent="."]
+position = Vector2(496, 632)
+lock_rotation = true
+freeze = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Floor"]
+scale = Vector2(1000, 41.475)
+mesh = SubResource("BoxMesh_sexa5")
+texture = SubResource("GradientTexture1D_aguy3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_xirgs")
+
+[node name="Foot" type="CharacterBody2D" parent="."]
+script = ExtResource("2_ucvjx")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Foot"]
+position = Vector2(447, 395)
+amount = 5
+lifetime = 0.5
+texture = ExtResource("2_kbwg3")
+emission_shape = 1
+emission_sphere_radius = 21.05
+direction = Vector2(90, -25)
+spread = 10.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_max = 691.92
+angle_max = 618.2
+scale_amount_min = 0.1
+scale_amount_max = 0.4
+scale_amount_curve = SubResource("Curve_ook20")
+color = Color(1, 1, 1, 0.705882)
+color_ramp = SubResource("Gradient_vbbkf")
+hue_variation_max = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foot"]
+position = Vector2(409, 366)
+rotation = 1.5711
+shape = SubResource("CapsuleShape2D_cdhkm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Foot"]
+position = Vector2(409, 371)
+scale = Vector2(2.24, 0.719995)
+texture = ExtResource("2_kbwg3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Foot"]
+position = Vector2(459, 331)
+rotation = 1.68812
+scale = Vector2(1.68996, 1.25377)
+texture = ExtResource("2_kbwg3")
