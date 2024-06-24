@@ -1,0 +1,109 @@
+[gd_scene load_steps=14 format=3 uid="uid://cg7ebs76kgbyp"]
+
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_6l11k"]
+[ext_resource type="Texture2D" uid="uid://d3d3ea83536wv" path="res://Assets/images/player_spritesheet.png" id="1_1475t"]
+[ext_resource type="Texture2D" uid="uid://tnqwgsx1gae1" path="res://Assets/images/player_dead.png" id="3_5x3mw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kvme"]
+atlas = ExtResource("1_1475t")
+region = Rect2(0, 0, 54, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ly6c"]
+atlas = ExtResource("1_1475t")
+region = Rect2(54, 0, 54, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy1n4"]
+atlas = ExtResource("1_1475t")
+region = Rect2(108, 0, 54, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkts2"]
+atlas = ExtResource("1_1475t")
+region = Rect2(162, 0, 54, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixwvp"]
+atlas = ExtResource("1_1475t")
+region = Rect2(216, 0, 54, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4jbub"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kvme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ly6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wy1n4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkts2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixwvp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oo2fk"]
+radius = 7.02419
+
+[sub_resource type="Animation" id="Animation_ul5tw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 3
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1kt8s"]
+resource_name = "spin"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 3
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 6.26573]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mim0u"]
+_data = {
+"RESET": SubResource("Animation_ul5tw"),
+"spin": SubResource("Animation_1kt8s")
+}
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_6l11k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4jbub")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(13, 2)
+rotation = 3.14159
+scale = Vector2(0.77679, 4.31992)
+shape = SubResource("CircleShape2D_oo2fk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mim0u")
+}
+
+[node name="DeadSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_5x3mw")

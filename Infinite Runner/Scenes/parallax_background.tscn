@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqjf6k6ya0von"]
+
+[ext_resource type="Script" path="res://Scenes/parallax_background.gd" id="1_4l7b1"]
+[ext_resource type="Texture2D" uid="uid://d31jabtkb0q2d" path="res://Assets/images/background.png" id="1_fyw8y"]
+[ext_resource type="Texture2D" uid="uid://bimjppjtya2yh" path="res://Assets/images/water.png" id="3_ypepf"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+script = ExtResource("1_4l7b1")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(512, 2.08165e-12)
+
+[node name="Background" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(256, 128)
+scale = Vector2(1.74744, 1.6)
+texture = ExtResource("1_fyw8y")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(1.3, 1)
+motion_mirroring = Vector2(481.49, 2.08165e-12)
+
+[node name="Background" type="TextureRect" parent="ParallaxLayer2"]
+offset_top = 208.0
+offset_right = 334.0
+offset_bottom = 238.0
+scale = Vector2(1.74744, 1.6)
+texture = ExtResource("3_ypepf")
+stretch_mode = 1
