@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=4 uid="uid://blacq5mv1tysf"]
+
+[ext_resource type="Texture2D" uid="uid://b5vj4oejg3g3d" path="res://Assets/MiniProject/Background.png" id="1_grihj"]
+[ext_resource type="Script" path="res://Scenes/mini_project.gd" id="1_ww8fc"]
+[ext_resource type="Texture2D" uid="uid://bfkhxr77gxija" path="res://Assets/MiniProject/Tiles/Grass.png" id="2_nh1c7"]
+[ext_resource type="Texture2D" uid="uid://rc72roro5m8l" path="res://Assets/MiniProject/Tiles/Dirt.png" id="3_3ffo4"]
+[ext_resource type="PackedScene" uid="uid://dwt6mngpo8dpy" path="res://Scenes/player.tscn" id="4_b2qgd"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t5ijg"]
+texture = ExtResource("2_nh1c7")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7cbt2"]
+texture = ExtResource("3_3ffo4")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSet" id="TileSet_p1hyb"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_t5ijg")
+sources/1 = SubResource("TileSetAtlasSource_7cbt2")
+
+[node name="MiniProject" type="Node"]
+script = ExtResource("1_ww8fc")
+
+[node name="Map" type="Node" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Map"]
+position = Vector2(548, 333)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_grihj")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Map" groups=["TileMapLayer"]]
+tile_map_data = PackedByteArray("AAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAAIAAkAAAAAAAAAAAAJAAkAAAAAAAAAAAAKAAkAAAAAAAAAAAALAAkAAAAAAAAAAAAMAAkAAAAAAAAAAAANAAkAAAAAAAAAAAAOAAkAAAAAAAAAAAAPAAkAAAAAAAAAAAAQAAkAAAAAAAAAAAARAAkAAAAAAAAAAAARAAoAAQAAAAAAAAAQAAoAAQAAAAAAAAAPAAoAAQAAAAAAAAAOAAoAAQAAAAAAAAANAAoAAQAAAAAAAAAMAAoAAQAAAAAAAAALAAoAAQAAAAAAAAAKAAoAAQAAAAAAAAAJAAoAAQAAAAAAAAAIAAoAAQAAAAAAAAAHAAoAAQAAAAAAAAAGAAoAAQAAAAAAAAAFAAoAAQAAAAAAAAAEAAoAAQAAAAAAAAADAAoAAQAAAAAAAAACAAoAAQAAAAAAAAABAAoAAQAAAAAAAAAAAAoAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_p1hyb")
+
+[node name="Player" parent="." instance=ExtResource("4_b2qgd")]
+position = Vector2(576, 320)
