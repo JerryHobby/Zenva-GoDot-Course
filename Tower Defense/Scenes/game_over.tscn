@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://4dkrit0671i4"]
+
+[ext_resource type="Script" path="res://Scenes/game_over.gd" id="1_ijh2k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a34pn"]
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_6f3i0"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_kikv6"]
+font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w455l"]
+content_margin_left = 25.0
+content_margin_right = 25.0
+bg_color = Color(0.0379449, 0.391619, 0.779438, 1)
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_ijh2k")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.370364, 0.370365, 0.370364, 1)
+
+[node name="GameOverLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -165.0
+offset_right = 46.0
+offset_bottom = -142.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_a34pn")
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -11.5
+offset_right = 26.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Score: "
+label_settings = SubResource("LabelSettings_6f3i0")
+
+[node name="WavesLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = 64.0
+offset_right = 84.0
+offset_bottom = 119.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Waves: 5"
+label_settings = SubResource("LabelSettings_kikv6")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = 274.0
+offset_right = 92.0
+offset_bottom = 351.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_w455l")
+text = "Restart Game"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

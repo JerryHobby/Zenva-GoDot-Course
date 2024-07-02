@@ -1,0 +1,110 @@
+[gd_scene load_steps=8 format=3 uid="uid://svrimsgscr5l"]
+
+[ext_resource type="Script" path="res://Scenes/hud.gd" id="1_jhonu"]
+[ext_resource type="LabelSettings" uid="uid://cd36n2qqfs4ie" path="res://Assets/ui_label_settings.tres" id="1_s6vxc"]
+[ext_resource type="Texture2D" uid="uid://drifme5fbeqjp" path="res://Assets/Textures/weapon_cannon_S.png" id="3_2iw1y"]
+[ext_resource type="Texture2D" uid="uid://cmg253xsooxb7" path="res://Assets/Textures/weapon_blaster_S.png" id="4_5xr0q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pmsa"]
+content_margin_right = 30.0
+bg_color = Color(0.450648, 0.450648, 0.450648, 1)
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4il4"]
+content_margin_right = 30.0
+bg_color = Color(0.535023, 0.535023, 0.535023, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kv6jm"]
+content_margin_right = 30.0
+bg_color = Color(0.662452, 0.662452, 0.662452, 1)
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_jhonu")
+
+[node name="MC" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="VbLeft" type="VBoxContainer" parent="MC"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="WaveLabel" type="Label" parent="MC/VbLeft"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Wave: 0"
+label_settings = ExtResource("1_s6vxc")
+
+[node name="EnemiesLabel" type="Label" parent="MC/VbLeft"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "UFOs: 0"
+label_settings = ExtResource("1_s6vxc")
+
+[node name="ScoreLabel" type="Label" parent="MC/VbLeft"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Score: 0"
+label_settings = ExtResource("1_s6vxc")
+
+[node name="VbRight" type="VBoxContainer" parent="MC"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HealthLabel" type="Label" parent="MC/VbRight"]
+layout_mode = 2
+text = "Health: 0"
+label_settings = ExtResource("1_s6vxc")
+horizontal_alignment = 2
+
+[node name="CashLabel" type="Label" parent="MC/VbRight"]
+layout_mode = 2
+text = "Cash: 0"
+label_settings = ExtResource("1_s6vxc")
+horizontal_alignment = 2
+
+[node name="Spacer" type="ColorRect" parent="MC/VbRight"]
+custom_minimum_size = Vector2(2.08165e-12, 20)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Shop" type="Panel" parent="."]
+offset_left = 1386.0
+offset_top = 141.0
+offset_right = 1386.0
+offset_bottom = 141.0
+
+[node name="CannonButton" type="Button" parent="Shop"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_0pmsa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o4il4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kv6jm")
+text = "250"
+icon = ExtResource("3_2iw1y")
+alignment = 2
+
+[node name="BlasterButton" type="Button" parent="Shop"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 0
+offset_top = 74.0
+offset_right = 200.0
+offset_bottom = 144.0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_0pmsa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o4il4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kv6jm")
+text = "250"
+icon = ExtResource("4_5xr0q")
+alignment = 2
+
+[connection signal="pressed" from="Shop/CannonButton" to="." method="_on_cannon_button_pressed"]
+[connection signal="pressed" from="Shop/BlasterButton" to="." method="_on_blaster_button_pressed"]

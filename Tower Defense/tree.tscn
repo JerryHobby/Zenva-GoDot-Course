@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://drpunmwqscvry"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dw04"]
+albedo_color = Color(0.564706, 0.345098, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t3fcu"]
+material = SubResource("StandardMaterial3D_0dw04")
+top_radius = 0.05
+bottom_radius = 0.1
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31poe"]
+albedo_color = Color(0.0980392, 0.545098, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_sy7mc"]
+material = SubResource("StandardMaterial3D_31poe")
+radius = 0.3
+height = 0.75
+
+[node name="Tree" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.08165e-12, 0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.430377, 0)
+mesh = SubResource("CylinderMesh_t3fcu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.817153, 0)
+mesh = SubResource("SphereMesh_sy7mc")

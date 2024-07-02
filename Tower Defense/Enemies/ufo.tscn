@@ -1,0 +1,135 @@
+[gd_scene load_steps=13 format=3 uid="uid://fqrbj4tahhhw"]
+
+[ext_resource type="Script" path="res://Enemies/ufo.gd" id="1_ihqdv"]
+[ext_resource type="ArrayMesh" uid="uid://b8wscxdvxaxab" path="res://Assets/Models/enemy_ufoRed.obj" id="2_6sxne"]
+[ext_resource type="PackedScene" uid="uid://bajjfwbw50j5y" path="res://Scenes/health_bar_3d.tscn" id="3_priwj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_esrec"]
+albedo_color = Color(0.533333, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bfq0c"]
+material = SubResource("StandardMaterial3D_esrec")
+radius = 0.254
+height = 0.5
+radial_segments = 4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_35b6v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e05jo"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.54902)
+
+[sub_resource type="SphereMesh" id="SphereMesh_tqc1p"]
+material = SubResource("StandardMaterial3D_e05jo")
+
+[sub_resource type="Animation" id="Animation_et3ok"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hit:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sxdtj"]
+resource_name = "die"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hit:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_q85ni"]
+resource_name = "hit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hit:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cm7b7"]
+_data = {
+"RESET": SubResource("Animation_et3ok"),
+"die": SubResource("Animation_sxdtj"),
+"hit": SubResource("Animation_q85ni")
+}
+
+[node name="UFO" type="PathFollow3D" groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 0.998752, 0.0499376, 0, -0.0499376, 0.998752, 0.5, 0.3, 0.5)
+
+[node name="ufo" type="CharacterBody3D" parent="." groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, -3.09472e-10, 0, -1.0536e-09, 1, 0, 0, 0)
+script = ExtResource("1_ihqdv")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="ufo"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.8349e-09, 0, -3.46644e-10, 1, 0, 0, 0)
+emitting = false
+amount = 50
+lifetime = 4.24
+one_shot = true
+speed_scale = 0.2
+explosiveness = 1.0
+mesh = SubResource("SphereMesh_bfq0c")
+spread = 89.46
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+initial_velocity_max = 50.0
+angular_velocity_max = 138.8
+scale_amount_min = 0.05
+scale_amount_max = 0.3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ufo"]
+transform = Transform3D(1, -3.55271e-15, 0, 0, 1, 7.77923e-09, 0, -2.77086e-09, 1, 0, 0, 0)
+mesh = ExtResource("2_6sxne")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ufo"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.8349e-09, 0, -3.46644e-10, 1, 0, 0.165496, 0.00827491)
+shape = SubResource("SphereShape3D_35b6v")
+
+[node name="Hit" type="MeshInstance3D" parent="ufo"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.8349e-09, 0, -3.46644e-10, 1, 0, 0.165864, 0.00829327)
+visible = false
+mesh = SubResource("SphereMesh_tqc1p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ufo"]
+libraries = {
+"": SubResource("AnimationLibrary_cm7b7")
+}
+
+[node name="HealthBar3D" parent="ufo" instance=ExtResource("3_priwj")]
+transform = Transform3D(0.5, 0, 0, 0, 1, 3.46644e-10, 0, -3.46644e-10, 1, 0, 1.02111, 0.0510557)

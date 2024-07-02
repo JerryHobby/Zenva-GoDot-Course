@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccfjuh4irk00c"]
+
+[ext_resource type="Script" path="res://Towers/cannon.gd" id="1_rpb0r"]
+[ext_resource type="ArrayMesh" uid="uid://c2jr8lrcu3v01" path="res://Assets/Models/weapon_cannon.obj" id="1_u25gu"]
+[ext_resource type="PackedScene" uid="uid://b1tjdyvysqefq" path="res://Towers/bullet.tscn" id="3_p7vnb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ewx7n"]
+size = Vector3(1, 0.0712891, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k276t"]
+radius = 1.5
+
+[node name="Cannon" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.2, 0.5)
+script = ExtResource("1_rpb0r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, 0, 0, 0)
+mesh = ExtResource("1_u25gu")
+
+[node name="Aim" type="Marker3D" parent="MeshInstance3D"]
+transform = Transform3D(-1, 3.48787e-16, 8.74228e-08, 3.48787e-16, 1, -3.48787e-16, -8.74228e-08, -3.48787e-16, -1, 0, 0.26006, 0.301491)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ewx7n")
+
+[node name="MobDetector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MobDetector"]
+shape = SubResource("SphereShape3D_k276t")
+
+[node name="BulletContainer" type="Node" parent="."]
+
+[node name="Bullet" parent="BulletContainer" instance=ExtResource("3_p7vnb")]
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="MobDetector" to="." method="_on_mob_detector_body_entered"]
+[connection signal="body_exited" from="MobDetector" to="." method="_on_mob_detector_body_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
