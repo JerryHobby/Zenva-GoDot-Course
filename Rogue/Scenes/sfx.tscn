@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://bw0tp3r0lrkf5"]
+
+[ext_resource type="Script" path="res://Scenes/sfx.gd" id="1_87dii"]
+[ext_resource type="AudioStream" uid="uid://ckuafucykjm58" path="res://Assets/SFX/Coin.wav" id="1_he1du"]
+[ext_resource type="AudioStream" uid="uid://x75ksprqawhx" path="res://Assets/SFX/Death.wav" id="2_symr4"]
+[ext_resource type="AudioStream" uid="uid://b82fld32m7fo5" path="res://Assets/SFX/Hit.wav" id="3_hr8bl"]
+[ext_resource type="AudioStream" uid="uid://cfyttt3lce4fx" path="res://Assets/SFX/Heart.wav" id="4_17bkm"]
+[ext_resource type="AudioStream" uid="uid://b22bcehl1pep8" path="res://Assets/SFX/Key.wav" id="5_s6rl1"]
+[ext_resource type="AudioStream" uid="uid://dgfchpf68cw13" path="res://Assets/SFX/walk.wav" id="6_dqb7y"]
+[ext_resource type="AudioStream" uid="uid://boaub88ast4nj" path="res://Assets/SFX/Next.wav" id="7_ofpnq"]
+
+[node name="sfx" type="Node"]
+script = ExtResource("1_87dii")
+
+[node name="Coin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_he1du")
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_symr4")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hr8bl")
+
+[node name="Heart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_17bkm")
+
+[node name="Key" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_s6rl1")
+
+[node name="Walk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_dqb7y")
+
+[node name="Next" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ofpnq")

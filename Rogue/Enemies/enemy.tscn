@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqda84noedaun"]
+
+[ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_p3v6m"]
+[ext_resource type="Texture2D" uid="uid://bnsnm8smlcwt2" path="res://Assets/Spritesheet.png" id="1_yh6uk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2g46"]
+size = Vector2(14, 14)
+
+[sub_resource type="Animation" id="Animation_pe8ft"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.611831, 0.810752, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_btt7c"]
+resource_name = "die"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.611831, 0.810752, 1, 1), Color(0.976471, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_weyq1"]
+resource_name = "take damage"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.611831, 0.810752, 1, 1), Color(1, 0.635294, 0.152941, 1), Color(0.611831, 0.810752, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oas4i"]
+_data = {
+"RESET": SubResource("Animation_pe8ft"),
+"die": SubResource("Animation_btt7c"),
+"take damage": SubResource("Animation_weyq1")
+}
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy", "Wall"]]
+scale = Vector2(3, 3)
+script = ExtResource("1_p3v6m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r2g46")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.611831, 0.810752, 1, 1)
+texture = ExtResource("1_yh6uk")
+region_enabled = true
+region_rect = Rect2(426, 35, 14, 14)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oas4i")
+}

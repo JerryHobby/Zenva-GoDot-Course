@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://j5m5pvqy7enb"]
+
+[ext_resource type="PackedScene" uid="uid://dwbab16h2esdb" path="res://Player/player.tscn" id="2_j4uej"]
+[ext_resource type="Script" path="res://Scenes/Generation.gd" id="3_j34t7"]
+[ext_resource type="Script" path="res://Scenes/Enemies.gd" id="4_rqp7x"]
+[ext_resource type="PackedScene" uid="uid://1sayvb1x02hs" path="res://Scenes/hud.tscn" id="5_e56t5"]
+
+[sub_resource type="Environment" id="Environment_3v3qd"]
+background_mode = 1
+background_color = Color(0.614743, 0.265636, 0, 1)
+
+[sub_resource type="TileSet" id="TileSet_q1gdh"]
+physics_layer_0/collision_layer = 1
+
+[node name="World" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3v3qd")
+
+[node name="Base" type="TileMap" parent="." groups=["Wall"]]
+visible = false
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_q1gdh")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1310721, 805306370, 65536, 1245185, 1610612736, 131072, 1245185, 1610612736, 196608, 1245185, 1610612736, 262144, 1245185, 1610612736, 327680, 1245185, 1610612736, 393216, 1245185, 1610612736, 524288, 1245185, 1610612736, 458752, 1245185, 1610612736, 589824, 1310721, 1342177282, 589825, 1245185, 805306368, 589826, 1245185, 805306368, 589827, 1245185, 805306368, 589828, 1245185, 805306368, 589829, 1245185, 805306368, 589830, 1245185, 805306368, 589831, 1245185, 805306368, 589832, 1245185, 805306368, 589833, 1245185, 805306368, 589834, 1310721, 2, 65546, 1245185, 1342177280, 131082, 1245185, 1342177280, 196618, 1245185, 1342177280, 327690, 1245185, 1342177280, 393226, 1245185, 1342177280, 458762, 1245185, 1342177280, 524298, 1245185, 1342177280, 1, 1245185, 0, 2, 1245185, 0, 3, 1245185, 0, 4, 1245185, 0, 5, 1245185, 0, 6, 1245185, 0, 7, 1245185, 0, 8, 1245185, 0, 9, 1245185, 0, 10, 1310721, 1610612738, 262154, 1245185, 1342177280)
+
+[node name="Player" parent="." instance=ExtResource("2_j4uej")]
+scale = Vector2(3, 3)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
+z_index = -1
+offset_left = -199.667
+offset_top = -128.667
+offset_right = 200.333
+offset_bottom = 121.333
+color = Color(0.439216, 0.2, 0.2, 1)
+
+[node name="Generation" type="Node" parent="."]
+script = ExtResource("3_j34t7")
+
+[node name="Enemies" type="Node2D" parent="." groups=["Enemy_Manager"]]
+script = ExtResource("4_rqp7x")
+
+[node name="hud" parent="." instance=ExtResource("5_e56t5")]

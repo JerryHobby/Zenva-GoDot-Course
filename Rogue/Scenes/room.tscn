@@ -1,0 +1,109 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5ijvpm4buhg1"]
+
+[ext_resource type="Texture2D" uid="uid://bnsnm8smlcwt2" path="res://Assets/Spritesheet.png" id="1_68ppb"]
+[ext_resource type="Script" path="res://Scenes/room.gd" id="1_y6t70"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f2xde"]
+texture = ExtResource("1_68ppb")
+separation = Vector2i(1, 1)
+18:1/0 = 0
+18:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+18:1/0/physics_layer_0/angular_velocity = 0.0
+18:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+18:2/0 = 0
+18:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+18:2/0/physics_layer_0/angular_velocity = 0.0
+18:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:2/0 = 0
+19:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+19:2/0/physics_layer_0/angular_velocity = 0.0
+19:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+20:2/0 = 0
+20:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+20:2/0/physics_layer_0/angular_velocity = 0.0
+20:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+20:1/0 = 0
+20:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+20:1/0/physics_layer_0/angular_velocity = 0.0
+20:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+20:0/0 = 0
+20:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+20:0/0/physics_layer_0/angular_velocity = 0.0
+20:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:0/0 = 0
+19:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+19:0/0/physics_layer_0/angular_velocity = 0.0
+19:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:1/0 = 0
+19:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+19:1/0/physics_layer_0/angular_velocity = 0.0
+19:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+18:0/0 = 0
+18:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+18:0/0/physics_layer_0/angular_velocity = 0.0
+18:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_q1gdh"]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_f2xde")
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_y6t70")
+
+[node name="Base" type="TileMap" parent="." groups=["Wall"]]
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_q1gdh")
+format = 2
+layer_0/tile_data = PackedInt32Array(65536, 1245185, 1610612736, 131072, 1245185, 1610612736, 196608, 1245185, 1610612736, 458752, 1245185, 1610612736, 524288, 1245185, 1610612736, 589824, 1245185, 1610612736, 655360, 1310721, 1342177282, 655361, 1245185, 805306368, 655362, 1245185, 805306368, 655363, 1245185, 805306368, 655367, 1245185, 805306368, 655368, 1245185, 805306368, 655369, 1245185, 805306368, 655370, 1310721, 2, 589834, 1245185, 1342177280, 524298, 1245185, 1342177280, 458762, 1245185, 1342177280, 0, 1310721, 805306370, 1, 1245185, 0, 2, 1245185, 0, 3, 1245185, 0, 196618, 1245185, 1342177280, 131082, 1245185, 1342177280, 65546, 1245185, 1342177280, 10, 1310721, 1610612738, 9, 1245185, 0, 8, 1245185, 0, 7, 1245185, 0)
+
+[node name="North Door" type="TileMap" parent="." groups=["Wall"]]
+visible = false
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_q1gdh")
+format = 2
+layer_0/tile_data = PackedInt32Array(-196605, 1245185, 1610612736, -131069, 1245185, 1610612736, -196601, 1245185, 1342177280, -131065, 1245185, 1342177280, -65529, 1245185, 1342177280, -65533, 1245185, 1610612736)
+
+[node name="South Door" type="TileMap" parent="." groups=["Wall"]]
+visible = false
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_q1gdh")
+format = 2
+layer_0/tile_data = PackedInt32Array(720903, 1245185, 1342177280, 786439, 1245185, 1342177280, 851975, 1245185, 1342177280, 720899, 1245185, 1610612736, 786435, 1245185, 1610612736, 851971, 1245185, 1610612736)
+
+[node name="East Door" type="TileMap" parent="." groups=["Wall"]]
+visible = false
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_q1gdh")
+format = 2
+layer_0/tile_data = PackedInt32Array(196619, 1245185, 0, 196620, 1245185, 0, 196621, 1245185, 0, 458763, 1245185, 805306368, 458764, 1245185, 805306368, 458765, 1245185, 805306368)
+
+[node name="West Door" type="TileMap" parent="." groups=["Wall"]]
+visible = false
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_q1gdh")
+format = 2
+layer_0/tile_data = PackedInt32Array(262143, 1245185, 0, 262142, 1245185, 0, 262141, 1245185, 0, 524287, 1245185, 805306368, 524286, 1245185, 805306368, 524285, 1245185, 805306368)
+
+[node name="North Wall" type="TileMap" parent="." groups=["Wall"]]
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_q1gdh")
+format = 2
+layer_0/tile_data = PackedInt32Array(4, 1245185, 0, 5, 1245185, 0, 6, 1245185, 0)
+
+[node name="South Wall" type="TileMap" parent="." groups=["Wall"]]
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_q1gdh")
+format = 2
+layer_0/tile_data = PackedInt32Array(655364, 1245185, 805306368, 655365, 1245185, 805306368, 655366, 1245185, 805306368)
+
+[node name="West Wall" type="TileMap" parent="." groups=["Wall"]]
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_q1gdh")
+format = 2
+layer_0/tile_data = PackedInt32Array(262144, 1245185, 1610612736, 327680, 1245185, 1610612736, 393216, 1245185, 1610612736)
+
+[node name="East Wall" type="TileMap" parent="." groups=["Wall"]]
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_q1gdh")
+format = 2
+layer_0/tile_data = PackedInt32Array(262154, 1245185, 1342177280, 327690, 1245185, 1342177280, 393226, 1245185, 1342177280)

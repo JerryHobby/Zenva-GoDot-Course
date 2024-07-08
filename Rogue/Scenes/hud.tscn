@@ -1,0 +1,179 @@
+[gd_scene load_steps=6 format=3 uid="uid://1sayvb1x02hs"]
+
+[ext_resource type="Script" path="res://Scenes/hud.gd" id="1_dfq8x"]
+[ext_resource type="LabelSettings" uid="uid://cpu3pisea3gfy" path="res://Scenes/hud.tres" id="2_6tr24"]
+[ext_resource type="Texture2D" uid="uid://bnsnm8smlcwt2" path="res://Assets/Spritesheet.png" id="3_houvv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b6i8v"]
+font_size = 22
+font_color = Color(0.880054, 0.720299, 0.243607, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8gic"]
+bg_color = Color(0, 0, 0, 0.501961)
+
+[node name="hud" type="CanvasLayer"]
+script = ExtResource("1_dfq8x")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 286.0
+offset_bottom = 160.0
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 777.0
+offset_right = 1152.0
+offset_bottom = 160.0
+size_flags_horizontal = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="LeftCol" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Spacer" type="Label" parent="MarginContainer/HBoxContainer/LeftCol"]
+layout_mode = 2
+label_settings = ExtResource("2_6tr24")
+
+[node name="HealthBar" type="Node2D" parent="MarginContainer/HBoxContainer/LeftCol"]
+position = Vector2(25, 25)
+
+[node name="Heart1" type="Sprite2D" parent="MarginContainer/HBoxContainer/LeftCol/HealthBar"]
+scale = Vector2(3, 3)
+texture = ExtResource("3_houvv")
+hframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2(698, 172, 34, 12)
+
+[node name="Heart2" type="Sprite2D" parent="MarginContainer/HBoxContainer/LeftCol/HealthBar"]
+position = Vector2(45, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("3_houvv")
+hframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2(698, 172, 34, 12)
+
+[node name="Heart3" type="Sprite2D" parent="MarginContainer/HBoxContainer/LeftCol/HealthBar"]
+position = Vector2(90, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("3_houvv")
+hframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2(698, 172, 34, 12)
+
+[node name="Heart4" type="Sprite2D" parent="MarginContainer/HBoxContainer/LeftCol/HealthBar"]
+position = Vector2(135, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("3_houvv")
+hframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2(698, 172, 34, 12)
+
+[node name="Heart5" type="Sprite2D" parent="MarginContainer/HBoxContainer/LeftCol/HealthBar"]
+position = Vector2(180, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("3_houvv")
+hframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2(698, 172, 34, 12)
+
+[node name="CoinsLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftCol"]
+layout_mode = 2
+text = "Coins: 999"
+label_settings = ExtResource("2_6tr24")
+
+[node name="SeedLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftCol"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_b6i8v")
+
+[node name="RightCol" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+alignment = 2
+
+[node name="EnemiesRemainingLabel" type="Label" parent="MarginContainer/HBoxContainer/RightCol"]
+layout_mode = 2
+text = "Remaining Enemies: 0"
+label_settings = ExtResource("2_6tr24")
+horizontal_alignment = 2
+
+[node name="HeartsRemainingLabel" type="Label" parent="MarginContainer/HBoxContainer/RightCol"]
+layout_mode = 2
+text = "Hearts Enemies: 0"
+label_settings = ExtResource("2_6tr24")
+horizontal_alignment = 2
+
+[node name="CoinsRemainingLabel" type="Label" parent="MarginContainer/HBoxContainer/RightCol"]
+layout_mode = 2
+text = "Coins Enemies: 0"
+label_settings = ExtResource("2_6tr24")
+horizontal_alignment = 2
+
+[node name="Key" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.313726)
+position = Vector2(231, 79)
+scale = Vector2(3, 3)
+texture = ExtResource("3_houvv")
+region_enabled = true
+region_rect = Rect2(545, 191, 14, 9)
+
+[node name="Minimap" type="Panel" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -217.0
+offset_top = -216.0
+offset_right = -17.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y8gic")
+
+[node name="LevelLabel" type="Label" parent="Minimap"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -73.0
+offset_right = 73.0
+offset_bottom = 42.0
+grow_horizontal = 2
+text = "Level: 1"
+label_settings = ExtResource("2_6tr24")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Minimap"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.23
+anchor_right = 0.9
+anchor_bottom = 0.9
+offset_top = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 6

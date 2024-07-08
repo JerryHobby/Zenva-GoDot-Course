@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwbab16h2esdb"]
+
+[ext_resource type="Texture2D" uid="uid://bnsnm8smlcwt2" path="res://Assets/Spritesheet.png" id="1_suksv"]
+[ext_resource type="Script" path="res://Player/player.gd" id="1_y3xdn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yn6xw"]
+size = Vector2(14, 14)
+
+[sub_resource type="Animation" id="Animation_x0cqa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.994427, 0.433077, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4pu2e"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0407796, 0.16041, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0.994427, 0.433077, 1), Color(1, 0.807238, 0.0866738, 1), Color(1, 0.807238, 0.0866738, 1), Color(0, 0.994427, 0.433077, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n1y7n"]
+resource_name = "player die"
+length = 0.5
+step = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0399094),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0.994427, 0.433077, 1), Color(1, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.496006),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v42g3"]
+_data = {
+"RESET": SubResource("Animation_x0cqa"),
+"hit": SubResource("Animation_4pu2e"),
+"player die": SubResource("Animation_n1y7n")
+}
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_y3xdn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_yn6xw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.994427, 0.433077, 1)
+position = Vector2(4, 4)
+texture = ExtResource("1_suksv")
+region_enabled = true
+region_rect = Rect2(477, 1, 14, 14)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v42g3")
+}
