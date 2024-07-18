@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq2yvpdu5wa4y"]
+
+[ext_resource type="Script" path="res://Bullets/player_bullet.gd" id="1_f0ioj"]
+[ext_resource type="Texture2D" uid="uid://ckot0f5a2a8i" path="res://Assets/player_bullet.png" id="1_yqgb4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ssfvi"]
+radius = 6.0
+
+[node name="PlayerBullet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_f0ioj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 6.28319
+texture = ExtResource("1_yqgb4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ssfvi")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

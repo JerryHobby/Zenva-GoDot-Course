@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cq5jutwm77xbn"]
+
+[ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_niul2"]
+[ext_resource type="Texture2D" uid="uid://da2pqtvr2ytpb" path="res://Assets/monster sprites/deep_elf_annihilator.png" id="2_8ta1f"]
+[ext_resource type="Script" path="res://Bullets/bullet_pool.gd" id="3_qis8k"]
+[ext_resource type="PackedScene" uid="uid://hwqs5rmrr62c" path="res://Bullets/enemy_bullet.tscn" id="4_537iw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdpjf"]
+size = Vector2(20, 24)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcypp"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfxon"]
+bg_color = Color(0, 1, 0, 1)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_niul2")
+monster = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8ta1f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bdpjf")
+
+[node name="Bullets" type="Node" parent="."]
+script = ExtResource("3_qis8k")
+bullet_scene = ExtResource("4_537iw")
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BulletSpawnPoint" type="Marker2D" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -20.0
+offset_top = 19.0
+offset_right = 20.0
+offset_bottom = 22.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xcypp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nfxon")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://vp7p3vf218et"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_m4kx5"]
+[ext_resource type="Texture2D" uid="uid://bwdl00drqij45" path="res://Assets/player.png" id="1_w1gb6"]
+[ext_resource type="Script" path="res://Bullets/bullet_pool.gd" id="3_5g1nx"]
+[ext_resource type="PackedScene" uid="uid://cq2yvpdu5wa4y" path="res://Bullets/player_bullet.tscn" id="4_0y3yg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fx5gw"]
+size = Vector2(12, 12)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hussi"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6y53"]
+bg_color = Color(0, 1, 0, 1)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_m4kx5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fx5gw")
+
+[node name="Player" type="Sprite2D" parent="."]
+texture = ExtResource("1_w1gb6")
+hframes = 3
+
+[node name="Bullets" type="Node" parent="."]
+script = ExtResource("3_5g1nx")
+bullet_scene = ExtResource("4_0y3yg")
+
+[node name="BulletSpawnPoint" type="Marker2D" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -20.0
+offset_top = 19.0
+offset_right = 20.0
+offset_bottom = 24.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hussi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o6y53")
+step = 1.0
+value = 100.0
+show_percentage = false
